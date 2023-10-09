@@ -1,0 +1,9 @@
+template_type: NOQ::AWS::IAM::Group
+template_schema_url: https://docs.iambic.org/reference/schemas/aws_iam_group_template
+included_accounts:
+  - IAM_testing
+identifier: IAM_testgroup
+properties:
+  group_name: IAM_testgroup
+  managed_policies:
+    - policy_arn: arn:aws:iam::aws:policy/AdministratorAccess

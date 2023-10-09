@@ -1,0 +1,20 @@
+template_type: NOQ::AWS::IAM::User
+template_schema_url: https://docs.iambic.org/reference/schemas/aws_iam_user_template
+included_accounts:
+  - IAM_testing
+identifier: IAM_testing
+properties:
+  credentials:
+    access_keys:
+      - enabled: true
+        id: AKIA25B2ZTXETLXRTHGW
+        last_used: Never
+    password:
+      enabled: true
+      last_used: Never
+  groups:
+    - group_name: IAM_testgroup
+  tags:
+    - key: AKIA25B2ZTXETLXRTHGW
+      value: IAM_testing
+  user_name: IAM_testing

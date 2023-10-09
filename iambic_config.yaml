@@ -1,0 +1,12 @@
+template_type: NOQ::Core::Config
+version: 0.11.86
+aws:
+  accounts:
+    - account_id: '749595106761'
+      account_name: IAM_testing
+      aws_profile: usertest
+      default_region: ap-southeast-1
+      hub_role_arn: arn:aws:iam::749595106761:role/IambicHubRole
+      iambic_managed: read_and_write
+      spoke_role_arn: arn:aws:iam::749595106761:role/IambicSpokeRole
+template_schema_url: https://docs.iambic.org/reference/schemas/config
