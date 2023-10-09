@@ -1,8 +1,10 @@
 template_type: NOQ::AWS::IAM::Role
 template_schema_url: https://docs.iambic.org/reference/schemas/aws_iam_role_template
-identifier: '{{var.account_name}}_iambic_test_role'
+included_accounts:
+  - IAM_testing
+identifier: IAM_testing_iambic_test_role
 properties:
-  description: IAMbic test role on {{var.account_name}}
+  description: IAMbic test role on IAM_testing
   assume_role_policy_document:
     statement:
       - action: sts:AssumeRole
@@ -15,10 +17,10 @@ properties:
         - action:
             - sqs:GetQueueAttributes
           effect: Deny
-          resource: arn:aws:sqs:ap-southeast-1:{{var.account_id}}:fakequeue
+          resource: arn:aws:sqs:ap-southeast-1:749595106761:fakequeue
   managed_policies:
     - policy_arn: arn:aws:iam::aws:policy/job-function/ViewOnlyAccess
   path: /iambic_test/
   permissions_boundary:
     policy_arn: arn:aws:iam::aws:policy/AWSDirectConnectReadOnlyAccess
-  role_name: '{{var.account_name}}_iambic_test_role'
+  role_name: IAM_testing_iambic_test_role
