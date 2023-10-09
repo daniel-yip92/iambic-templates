@@ -8,7 +8,7 @@ properties:
     access_keys:
       - enabled: true
         id: AKIA25B2ZTXETLXRTHGW
-        last_used: Never
+        last_used: Within the last 30 days
     password:
       enabled: true
       last_used: Never
