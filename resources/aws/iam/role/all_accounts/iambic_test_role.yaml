@@ -10,6 +10,24 @@ properties:
         principal:
           service: ec2.amazonaws.com
   inline_policies:
+    - policy_name: s3-access
+      statement:
+        - excluded_accounts:  # Include the policy on the role across all accounts, except PROD_ACCOUNT
+            - prod_account
+          action:
+            - s3:GetObject
+          effect: Allow
+          resource: arn:aws:s3:::awsexamplebucket1-{{var.account_name}}/*
+        - included_accounts:  # Only include the policy statement on DEV_ACCOUNT
+            - dev_account
+          action:
+            - s3:DeleteObject
+          effect: Allow
+          resource: arn:aws:s3:::awsexamplebucket1-{{var.account_name}}/*
+        - action:
+            - s3:CreateBucket
+          effect: Allow
+          resource: '*'
     - policy_name: spoke-acct-policy
       statement:
         - action:
@@ -17,8 +35,8 @@ properties:
           effect: Deny
           resource: arn:aws:sqs:ap-southeast-1:{{var.account_id}}:fakequeue
   managed_policies:
-    - policy_arn: arn:aws:iam::aws:policy/job-function/ViewOnlyAccess
+    - policy_arn: arn:aws:iam::aws:policy/job-function/SupportUser
   path: /iambic_test/
   permissions_boundary:
-    policy_arn: arn:aws:iam::aws:policy/AWSDirectConnectReadOnlyAccess
+    policy_arn: arn:aws:iam::aws:policy/AmazonS3FullAccess
   role_name: '{{var.account_name}}_iambic_test_role'
